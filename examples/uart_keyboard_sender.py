@@ -1,11 +1,10 @@
 #!/usr/bin/python
-# Example of interaction with a BLE UART device using a UART service
-# implementation.
-# Author: Tony DiCola
+# transfer BLE UART key press command to USB HID
+# requirement: PyQt5
+# Modified by Makoto Hamanaka
+# Original Author: Tony DiCola
 import Adafruit_BluefruitLE
 from Adafruit_BluefruitLE.services import UART
-#import tkinter as tk 
-from Tkinter import *
 
 from PyObjCTools import AppHelper
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
