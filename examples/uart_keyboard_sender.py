@@ -15,8 +15,13 @@ from PyQt5.QtCore import Qt
 import threading
 import traceback
 
-# ref: https://gist.github.com/MightyPork/6da26e382a7ad91b5496ee55fdc73db2 : usb_hid_keys.h
-
+# refs:
+# * usb_hid_keys.h
+#   https://gist.github.com/MightyPork/6da26e382a7ad91b5496ee55fdc73db2
+# * Mac OS virtual key code
+#   https://monobook.org/wiki/%E3%82%AD%E3%83%BC%E3%82%B3%E3%83%BC%E3%83%89/Mac_OS_X
+# * PyQt5 QtKeyEvent
+#   https://doc.qt.io/qt-5/qkeyevent.html
 class KeyCodeConverter:
     MOD_ANYKEY = 0x100
     MOD_CMD = 0x100000
@@ -110,7 +115,6 @@ class App(QWidget):
         self.initUI()
         self.sender = UartSender()
         self.sender.connectAsync(self.onConnect)
-        # https://monobook.org/wiki/%E3%82%AD%E3%83%BC%E3%82%B3%E3%83%BC%E3%83%89/Mac_OS_X
         #self.keyCodeTable="asdfhgzxcv bqweryt123465+97-80]ou[ip lj'k;\\,/nm."
 
     def keyPressEvent(self, event):
@@ -131,13 +135,6 @@ class App(QWidget):
         # keycode: https://qiita.com/baba163/items/e2390c4529ec0448151d
         #if key == Qt.Key_Escape:
         #    print('esc')
-
-    def usbHidKeyMsg(event):
-        key = event.key()
-        vkey = event.nativeVirtualKey()
-        scan = event.nativeScanCode()
-        mod = event.nativeModifiers()
-
 
     def onConnect(self, success):
         print("connection finished:"+str(success))
